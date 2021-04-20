@@ -17,6 +17,8 @@ def read_items_from(file: str):
                     item_priority = 2
                 elif item_info[2] == 'MEDIUM':
                     item_priority = 1
+                elif item_info[2] == 'LOW':
+                    item_priority = 0
                 new_item = Item(item_info[0], item_info[1], item_priority)
                 list_of_items.append(new_item)
     except FileNotFoundError as err:
@@ -24,19 +26,19 @@ def read_items_from(file: str):
     return list_of_items
 
 
-def sort_by_sequence(unsorted_list: list, order_type:bool):
+def sort_by_sequence(unsorted_list: list, order_type: bool):
     """This is a function will order a list of items by sequence"""
     new_list = sorted(unsorted_list, key=lambda item: item.sequence, reverse=order_type)
     return new_list
 
 
-def sort_by_size(unsorted_list: list,order_type:bool):
+def sort_by_size(unsorted_list: list, order_type: bool):
     """This is a function will order a list of items by size"""
     new_list = sorted(unsorted_list, key=lambda item: item.size, reverse=order_type)
     return new_list
 
 
-def sort_by_priority(unsorted_list: list,order_type:bool):
+def sort_by_priority(unsorted_list: list, order_type: bool):
     """This is a function will order a list of items by priority"""
     new_list = sorted(unsorted_list, key=lambda item: item.priority, reverse=order_type)
     return new_list
