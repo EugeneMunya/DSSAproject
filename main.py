@@ -1,6 +1,6 @@
 """This is main module used by interpreter to execute what it contains"""
 from wrapper.helpers import read_items_from
-from wrapper.sort_factory import get_sort_type, file_creator
+from wrapper.sort_factory import get_sort_type, file_creator,asc_or_desc_order
 
 
 ITEMS_FILE = 'wrapper/file_store/items.txt'
@@ -10,6 +10,7 @@ ORDER_BY_PRIORITY = 'wrapper/file_store/order_by_priority.txt'
 list_of_items = []
 sorted_items = []
 ITEM_PRIORITY = ''
+ASC_DESC = False
 
 if __name__ == "__main__":
 
@@ -20,9 +21,11 @@ if __name__ == "__main__":
     }
 
     list_of_items = read_items_from(ITEMS_FILE)
-    user_input = input("Type sort type between sequence,size,priority:")
+    user_input = input("Type sort type between sequence,size,priority: ").lower()
+    order_type = input("Type ASC for ascending or DESC for descending: ").lower()
     try:
-        sorted_items = get_sort_type(user_input)(list_of_items)
+        ASC_DESC = asc_or_desc_order(order_type)
+        sorted_items = get_sort_type(user_input)(list_of_items, ASC_DESC)
     except ValueError as err:
         print(err)
     for index, item in enumerate(sorted_items):

@@ -19,6 +19,18 @@ def get_sort_type(sort_by):
     raise ValueError('Allowed to sort by sequence,size and priority only')
 
 
+def asc_or_desc_order(order_type:str):
+    """
+    This function will used to direct the order of output
+    whether is ascending or descending
+    """
+    if order_type == 'asc':
+        return False
+    if order_type == 'desc':
+        return True
+    raise ValueError('Wrong order type')
+
+
 def file_creator(file_name, data):
     """This function will used to create order output files"""
     try:
